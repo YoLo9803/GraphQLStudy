@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace GraphStudy.Services
 {
-    public class RelationshipService
+    public class RelationshipService : IRelationshipService
     {
         List<Relationship> relationships;
 
@@ -75,7 +75,13 @@ namespace GraphStudy.Services
         /// <returns></returns>
         public IEnumerable<Relationship> GetRelationshipsByUserId(int userId)
         {
-            return relationships.Where(context => context.FirstUserId == userId || context.SecondUserId == userId);
+            IEnumerable<Relationship> relationships = 
+            this.relationships.Where(context => context.FirstUserId == userId || context.SecondUserId == userId);
+            if (relationships == null)
+            {
+                throw new ArgumentException(String.Format("無 User Id {0} 之紀錄", userId));
+            }
+            return relationships;
         }
     }
 }
