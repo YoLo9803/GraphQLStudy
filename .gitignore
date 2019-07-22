@@ -1,0 +1,7 @@
+.vscode/
+GraphStudy.Api.UserRESTful/bin/
+GraphStudy.Api.UserRESTful/obj/
+GraphStudy.Models/bin/
+GraphStudy.Models/obj/
+GraphStudy.Services/bin/
+GraphStudy.Services/obj/
