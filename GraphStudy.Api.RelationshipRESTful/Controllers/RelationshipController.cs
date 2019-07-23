@@ -23,5 +23,5 @@ namespace GraphStudy.Api.RelationshipRESTful.Controllers
         {
             return relationshipService.GetRelationshipsByUserId(userId).ToList();
         }
-}
+    }
 }

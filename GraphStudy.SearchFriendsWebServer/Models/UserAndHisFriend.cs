@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace GraphStudy.SearchFriendsWebServer.Models
 {
-    public class UserAndHisFriend
+    public class UserAndHisFriends
     {
         public User user{ get; set; }
 

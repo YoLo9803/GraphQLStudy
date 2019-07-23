@@ -1,26 +1,24 @@
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Http;
 using GraphStudy.Models;
 using GraphStudy.SearchFriendsWebServer.Models;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using GraphStudy.SearchFriendsWebServer.Services;
 
 namespace GraphStudy.SearchFriendsWebServer.Controllers
 {
     public class UserController : Controller
     {
-        private IHttpClientFactory httpClientFactory;
+        private readonly IConfiguration config;
 
-        private IConfiguration config;
+        private readonly HttpOperation httpOperation;
 
-        public UserController(IHttpClientFactory httpClientFactory,IConfiguration config)
+        public UserController(IConfiguration config, HttpOperation httpOperation)
         {
-            this.httpClientFactory = httpClientFactory;
             this.config = config;
+            this.httpOperation = httpOperation;
         }
 
         [HttpGet]
@@ -28,39 +26,33 @@ namespace GraphStudy.SearchFriendsWebServer.Controllers
         {
             string GET_USER_URL = config["RequestURL:GetUserById"];
             string GET_RELATIONSHIP_URL = config["RequestURL:GetRelationShipById"];
-            var httpClient = httpClientFactory.CreateClient();
             //GetUserById
-            var response = await httpClient.GetAsync(GET_USER_URL + userId.ToString());
-            User userModel = await response.Content.ReadAsAsync<User>();
+            string response = await httpOperation.GetResponseContent(GET_USER_URL + userId.ToString());
+            User userModel = JsonConvert.DeserializeObject<User>(response);
             //Initialize result model
-            UserAndHisFriend userAndHisFriends = new UserAndHisFriend 
+            UserAndHisFriends userAndHisFriends = new UserAndHisFriends
                 {
                     user = userModel,
                     friends = new List<FriendInformation>()
                 };
             //GetRelationshipById
-            response = await httpClient.GetAsync(GET_RELATIONSHIP_URL + userId.ToString());
-            List<Relationship> relationships = await response.Content.ReadAsAsync<List<Relationship>>();
+            string relationshipResponse = await httpOperation.GetResponseContent(GET_RELATIONSHIP_URL + userId);
+            List<Relationship> relationships = JsonConvert.DeserializeObject<List<Relationship>>(relationshipResponse);
             //SearchFriendsByRelationship
             foreach (Relationship relationship in relationships)
             {
                 if (relationship.FirstUserId == userId)
-                {
-                    response = await httpClient.GetAsync(GET_USER_URL + relationship.SecondUserId.ToString()); 
-                }
+                    response = await httpOperation.GetResponseContent(
+                        GET_USER_URL + relationship.SecondUserId.ToString()); 
                 else
-                { 
-                    response = await httpClient.GetAsync(GET_USER_URL + relationship.FirstUserId.ToString());
-                }
-                userModel = await response.Content.ReadAsAsync<User>();
-                userAndHisFriends.friends.Add
-                (
-                    new FriendInformation
-                    {
-                        relationship = relationship,
-                        FriendModel = userModel
-                    }
-                );
+                    response = await httpOperation.GetResponseContent(
+                        GET_USER_URL + relationship.FirstUserId.ToString());
+                userModel = JsonConvert.DeserializeObject<User>(response);
+                userAndHisFriends.friends.Add(new FriendInformation
+                                                {
+                                                    relationship = relationship,
+                                                    FriendModel = userModel
+                                                });
             }
             return Json(userAndHisFriends);
         }
