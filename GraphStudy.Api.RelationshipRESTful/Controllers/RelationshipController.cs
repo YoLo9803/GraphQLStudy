@@ -19,9 +19,9 @@ namespace GraphStudy.Api.RelationshipRESTful.Controllers
 
         [HttpGet]
         [Route("api/[Controller]/{userId}")]
-        public IEnumerable<Relationship> GetRelationshipByUserId(int userId)
+        public List<Relationship> GetRelationshipByUserId(int userId)
         {
-            return relationshipService.GetRelationshipsByUserId(userId);
+            return relationshipService.GetRelationshipsByUserId(userId).ToList();
         }
 }
 }

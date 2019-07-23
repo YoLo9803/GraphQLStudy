@@ -1,0 +1,7 @@
+{
+    "RequestURL":
+    {
+        "GetRelationShipById" : "http://localhost:8081/api/Relationship/",
+        "GetUserById" : "http://localhost:8080/api/User/"
+    }
+}
