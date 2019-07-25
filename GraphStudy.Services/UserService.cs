@@ -55,6 +55,8 @@ namespace GraphStudy.Services
         /// <returns></returns>
         public User GetUserById(int id)
         {
+            if (id == 0)
+                throw new ArgumentNullException();
             User selectedUser = users.SingleOrDefault(context => context.Id == id);
             if (selectedUser == null)
             {
