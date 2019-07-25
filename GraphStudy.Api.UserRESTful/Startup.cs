@@ -27,13 +27,6 @@ namespace GraphStudy.Api.UserRESTful
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //將傳回Json換行縮排顯示
-            services.AddMvc()
-               .AddJsonOptions(options =>
-               {
-                   options.SerializerSettings.Formatting = Formatting.Indented;
-               });
-
             services.AddSingleton<IUserService, UserService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

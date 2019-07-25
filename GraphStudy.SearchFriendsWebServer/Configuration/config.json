@@ -2,6 +2,7 @@
     "RequestURL":
     {
         "GetRelationShipById" : "http://localhost:8081/api/Relationship/",
+        "FriendsIds" : "/FriendsIds",
         "GetUserById" : "http://localhost:8080/api/User/"
     }
 }

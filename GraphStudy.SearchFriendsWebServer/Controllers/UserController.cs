@@ -5,6 +5,7 @@ using GraphStudy.Models;
 using GraphStudy.SearchFriendsWebServer.Models;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using GraphStudy.SearchFriendsWebServer.Services;
 
 namespace GraphStudy.SearchFriendsWebServer.Controllers
@@ -24,37 +25,25 @@ namespace GraphStudy.SearchFriendsWebServer.Controllers
         [HttpGet]
         public async Task<JsonResult> UserAndHisFriends(int userId)
         {
+            //RequestString
             string GET_USER_URL = config["RequestURL:GetUserById"];
             string GET_RELATIONSHIP_URL = config["RequestURL:GetRelationShipById"];
+            string FRIENDIDS = config["RequestURL:FriendsIds"];
             //GetUserById
-            string response = await httpOperation.GetResponseContent(GET_USER_URL + userId.ToString());
-            User userModel = JsonConvert.DeserializeObject<User>(response);
-            //Initialize result model
-            UserAndHisFriends userAndHisFriends = new UserAndHisFriends
-                {
-                    user = userModel,
-                    friends = new List<FriendInformation>()
-                };
-            //GetRelationshipById
-            string relationshipResponse = await httpOperation.GetResponseContent(GET_RELATIONSHIP_URL + userId);
-            List<Relationship> relationships = JsonConvert.DeserializeObject<List<Relationship>>(relationshipResponse);
-            //SearchFriendsByRelationship
-            foreach (Relationship relationship in relationships)
+            string response = await this.httpOperation.GetResponseContent(GET_USER_URL + userId.ToString());
+            JObject result = JObject.Parse(response);
+            //GetFriendsIds
+            response = await this.httpOperation.GetResponseContent(GET_RELATIONSHIP_URL + userId + FRIENDIDS);
+            List<int> friendsIds = JsonConvert.DeserializeObject<List<int>>(response);
+            JArray friends= new JArray();
+            //GetFriends
+            foreach (int friendId in friendsIds)
             {
-                if (relationship.FirstUserId == userId)
-                    response = await httpOperation.GetResponseContent(
-                        GET_USER_URL + relationship.SecondUserId.ToString()); 
-                else
-                    response = await httpOperation.GetResponseContent(
-                        GET_USER_URL + relationship.FirstUserId.ToString());
-                userModel = JsonConvert.DeserializeObject<User>(response);
-                userAndHisFriends.friends.Add(new FriendInformation
-                                                {
-                                                    relationship = relationship,
-                                                    FriendModel = userModel
-                                                });
+                response = await this.httpOperation.GetResponseContent(GET_USER_URL + friendId.ToString());
+                friends.Add(JObject.Parse(response));
             }
-            return Json(userAndHisFriends);
+            result["friends"] = friends;
+            return Json(result);
         }
     }
 }

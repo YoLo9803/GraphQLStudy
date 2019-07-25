@@ -9,6 +9,9 @@ namespace GraphStudy.Services
     public interface IRelationshipService
     {
         //按照UserId取得關係
-        IEnumerable<Relationship> GetRelationshipsByUserId(int userId);
+        List<Relationship> GetRelationshipsByUserId(int userId);
+
+        //取得朋友Ids
+        List<int> GetFriendsIdsByUserId(int userId);
     }
 }

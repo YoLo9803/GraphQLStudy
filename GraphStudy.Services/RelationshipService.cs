@@ -73,15 +73,32 @@ namespace GraphStudy.Services
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public IEnumerable<Relationship> GetRelationshipsByUserId(int userId)
+        public List<Relationship> GetRelationshipsByUserId(int userId)
         {
-            IEnumerable<Relationship> relationships = 
-            this.relationships.Where(context => context.FirstUserId == userId || context.SecondUserId == userId);
+            List<Relationship> relationships = 
+            this.relationships.Where(context => 
+                context.FirstUserId == userId || context.SecondUserId == userId).ToList();
             if (relationships == null)
             {
                 throw new ArgumentException(String.Format("無 User Id {0} 之紀錄", userId));
             }
             return relationships;
+        }
+
+        public List<int> GetFriendsIdsByUserId(int userId)
+        {
+            List<Relationship> relationships = this.GetRelationshipsByUserId(userId);
+            List<int> friendsIds = new List<int>();
+            foreach (Relationship relationship in relationships)
+            {
+                if (relationship.FirstUserId == userId)
+                    friendsIds.Add(relationship.SecondUserId);
+                else
+                    friendsIds.Add(relationship.FirstUserId);
+            }
+            if (friendsIds.Count == 0)
+                throw new ArgumentNullException("List is null");
+            return friendsIds;
         }
     }
 }
