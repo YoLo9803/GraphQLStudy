@@ -1,0 +1,12 @@
+﻿{
+  "profiles": {
+    "GraphStudy.Api.GraphQLServer": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "applicationUrl": "http://localhost:8083",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

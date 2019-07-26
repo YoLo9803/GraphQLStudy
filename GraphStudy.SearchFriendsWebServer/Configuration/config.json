@@ -1,8 +1,7 @@
 {
     "RequestURL":
     {
-        "GetRelationShipById" : "http://localhost:8081/api/Relationship/",
-        "FriendsIds" : "/FriendsIds",
-        "GetUserById" : "http://localhost:8080/api/User/"
+        "GetRelationShipById" : "http://localhost:8081/api/Relationship/{0}/FriendsIds",
+        "GetUserById" : "http://localhost:8080/api/User/{0}"
     }
 }
