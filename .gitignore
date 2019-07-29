@@ -11,3 +11,5 @@ GraphStudy.SearchFriendsWebServer/bin/
 GraphStudy.SearchFriendsWebServer/obj/
 GraphStudy.Api.GraphQLServer/bin/
 GraphStudy.Api.GraphQLServer/obj/
+GraphStudy.Api.GraphQLServer.Tests/bin/
+GraphStudy.Api.GraphQLServer.Tests/obj/
