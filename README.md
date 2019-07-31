@@ -1,6 +1,6 @@
 # GraphStudy
 
-### For helping you setup a GraphQL server
+### For helping you to setup a GraphQL server
 
 You can use .Net Core SDK 2.2, open cmd , and type command *dotnet run* to run the server.
 
