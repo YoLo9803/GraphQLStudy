@@ -2,6 +2,10 @@
 
 ### For comparing the performence of RESTful & GraphQL
 
+Requirement:  
+* Windows/Linux/MacOS
+* .Net Core SDK 2.2
+
 There are 4 web servers have to run:
 
 * GraphStudy.Api.GraphQLServer
