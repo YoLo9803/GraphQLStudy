@@ -1,6 +1,6 @@
 # GraphStudy
 
-### For helping you to setup a GraphQL server
+### For helping you to setup a graphql-dotnet server
 
 Requirement:  
 * Windows/Linux/MacOS  
