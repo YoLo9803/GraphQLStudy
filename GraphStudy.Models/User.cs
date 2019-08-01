@@ -17,9 +17,5 @@ namespace GraphStudy.Models
         /// 使用者名稱
         /// </summary>
         public string Name { get; set; }
-        /// <summary>
-        /// 朋友編號List
-        /// </summary>
-        public List<int> FriendIds { get; set; }
     }
 }
