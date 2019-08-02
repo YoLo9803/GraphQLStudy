@@ -28,6 +28,7 @@ After run the servers above, The SearchFriendsWebServer exposes one endpoint:
 And the GraphQLServer exposes one endpoint:  
 * http://localhost:8083/graphql  
   Query GET request sample:  
+  * Id is a number between 1 to 6.  
   * Ex. http://localhost:8083/graphql?query={user(id:2){id,name,friends{id,name}}}
 
 You can use the UI middleware *GraphiQL* to explore the graphQL schema, Link below:  
