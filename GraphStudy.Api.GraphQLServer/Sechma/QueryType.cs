@@ -10,6 +10,9 @@ namespace GraphStudy.Api.GraphQLServer.Schema
     {
         public QueryType(IUserService userService)
         {
+            //hello world
+            Field<StringGraphType>("HelloWorld", resolve: context => "Hello World!");
+
             //尋找對應編號的使用者
             Field<UserType>(
                 "user",
