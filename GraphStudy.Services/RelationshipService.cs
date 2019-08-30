@@ -8,7 +8,7 @@ namespace GraphStudy.Services
 {
     public class RelationshipService : IRelationshipService
     {
-        List<Relationship> relationships;
+        private List<Relationship> relationships;
 
         public RelationshipService()
         {
@@ -68,6 +68,11 @@ namespace GraphStudy.Services
             };
         }
 
+        public RelationshipService(List<Relationship> relationships)
+        {
+            this.relationships = relationships;
+        }
+
         /// <summary>
         /// 按照UserId尋找Relationship
         /// </summary>
@@ -78,9 +83,9 @@ namespace GraphStudy.Services
             List<Relationship> relationships = 
             this.relationships.Where(context => 
                 context.FirstUserId == userId || context.SecondUserId == userId).ToList();
-            if (relationships == null)
+            if (relationships.Count == 0)
             {
-                throw new ArgumentException(String.Format("無 User Id {0} 之紀錄", userId));
+                throw new KeyNotFoundException(String.Format("無 User Id {0} 之紀錄", userId));
             }
             return relationships;
         }
@@ -96,8 +101,6 @@ namespace GraphStudy.Services
                 else
                     friendsIds.Add(relationship.FirstUserId);
             }
-            if (friendsIds.Count == 0)
-                throw new ArgumentNullException("List is null");
             return friendsIds;
         }
     }

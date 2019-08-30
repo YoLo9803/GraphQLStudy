@@ -11,7 +11,7 @@ namespace GraphStudy.Services
     /// </summary>
     public class UserService : IUserService
     {
-        readonly List<User> users;
+        private List<User> users;
 
         public UserService()
         {
@@ -42,6 +42,12 @@ namespace GraphStudy.Services
                 }
             };
         }
+
+        public UserService(List<User> users)
+        {
+            this.users = users;
+        }
+
         /// <summary>
         /// 按照ID取得使用者
         /// </summary>
@@ -49,8 +55,6 @@ namespace GraphStudy.Services
         /// <returns></returns>
         public User GetUserById(int id)
         {
-            if (id == 0)
-                throw new ArgumentNullException();
             User selectedUser = users.SingleOrDefault(context => context.Id == id);
             if (selectedUser == null)
             {

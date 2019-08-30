@@ -13,3 +13,5 @@ GraphStudy.Api.GraphQLServer/bin/
 GraphStudy.Api.GraphQLServer/obj/
 GraphStudy.Api.GraphQLServer.Tests/bin/
 GraphStudy.Api.GraphQLServer.Tests/obj/
+GraphStudy.Services.Tests/bin/
+GraphStudy.Services.Tests/obj/
