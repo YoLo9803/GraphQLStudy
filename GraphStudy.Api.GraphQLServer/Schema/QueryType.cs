@@ -1,9 +1,8 @@
 ﻿using GraphQL.Types;
-using GraphStudy.Services;
 using Microsoft.Extensions.Configuration;
 using System;
 using Newtonsoft.Json;
-using GraphStudy.Models;
+using GraphStudy.Api.GraphQLServer.BusinessModels;
 
 namespace GraphStudy.Api.GraphQLServer.Schema
 {
@@ -12,7 +11,7 @@ namespace GraphStudy.Api.GraphQLServer.Schema
     /// </summary>
     public class QueryType : ObjectGraphType
     {
-        public QueryType(IUserService userService, IConfiguration config, HttpOperation httpOperation)
+        public QueryType(IConfiguration config, HttpOperation httpOperation)
         {
             string GET_USER_URL_BASE = config["RequestURL:GetUserById"];
             //尋找對應編號的使用者

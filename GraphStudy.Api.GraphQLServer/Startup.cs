@@ -27,8 +27,6 @@ namespace GraphStudy.Api.GraphQLServer
             services.AddSingleton<GraphStudySchema>();
             services.AddSingleton<UserType>();
             services.AddSingleton<QueryType>();
-            services.AddSingleton<IUserService, UserService>();
-            services.AddSingleton<IRelationshipService, RelationshipService>();
             services.AddSingleton<IDependencyResolver>(s => new FuncDependencyResolver(s.GetRequiredService));
             
             services.AddHttpClient();
