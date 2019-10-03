@@ -10,15 +10,15 @@ namespace GraphStudy.Api.GraphQLServer.Schema
         public UserType(IUserService userService,IRelationshipService relationshipService)
         {
             //使用者編號
-            Field(context => context.Id);
+            Field(context => context.id);
             //使用者名稱
-            Field(context => context.Name);
+            Field(context => context.name);
             //朋友
             Field<ListGraphType<UserType>>(
                 "friends",
                 resolve: context => 
                 {
-                    List<int> friendsIds = relationshipService.GetFriendsIdsByUserId(context.Source.Id);
+                    List<int> friendsIds = relationshipService.GetFriendsIdsByUserId(context.Source.id);
                     List<User> friends = new List<User>();
                     foreach (int friendId in friendsIds)
                     {

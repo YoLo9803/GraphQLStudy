@@ -18,13 +18,13 @@ namespace GraphStudy.Services.Tests
             {
                 new User
                 {
-                    Id = 1,
-                    Name = "chris"
+                    id = 1,
+                    name = "chris"
                 },
                 new User
                 {
-                    Id = 2,
-                    Name = "jackey"
+                    id = 2,
+                    name = "jackey"
                 }
             };
             UserService userService = new UserService(usersData);
@@ -32,8 +32,8 @@ namespace GraphStudy.Services.Tests
             //Act
             User chris = userService.GetUserById(CHRIS_USERID);
             //Assert
-            Assert.Equal(chris.Id, 1);
-            Assert.Equal(chris.Name, "chris");
+            Assert.Equal(chris.id, 1);
+            Assert.Equal(chris.name, "chris");
         }
 
         /// <summary>
@@ -47,13 +47,13 @@ namespace GraphStudy.Services.Tests
             {
                 new User
                 {
-                    Id = 1,
-                    Name = "chris"
+                    id = 1,
+                    name = "chris"
                 },
                 new User
                 {
-                    Id = 2,
-                    Name = "jackey"
+                    id = 2,
+                    name = "jackey"
                 }
             };
             UserService userService = new UserService(usersData);
@@ -76,8 +76,8 @@ namespace GraphStudy.Services.Tests
             User chris = userService.GetUserById(1);
 
             //Assert
-            Assert.Equal(1, chris.Id);
-            Assert.Equal("chris", chris.Name);
+            Assert.Equal(1, chris.id);
+            Assert.Equal("chris", chris.name);
         }
     }
 }

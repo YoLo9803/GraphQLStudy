@@ -19,6 +19,13 @@ namespace GraphStudy.Api.GraphQLServer
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration((hostContext, config) =>
+                {
+                    var env = hostContext.HostingEnvironment; 
+                    config.SetBasePath(Path.Combine(env.ContentRootPath, "Configuration")) 
+                          .AddJsonFile(path: "config.json", optional: false, reloadOnChange: true);
+                })
                 .UseStartup<Startup>();
+            
     }
 }

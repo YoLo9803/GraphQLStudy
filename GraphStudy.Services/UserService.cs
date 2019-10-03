@@ -17,28 +17,28 @@ namespace GraphStudy.Services
         {
             users = new List<User> {
                 new User{
-                    Id = 1,
-                    Name = "chris"
+                    id = 1,
+                    name = "chris"
                 },
                 new User{
-                    Id = 2,
-                    Name = "Amy"
+                    id = 2,
+                    name = "Amy"
                 },
                 new User{
-                    Id = 3,
-                    Name = "Leon"
+                    id = 3,
+                    name = "Leon"
                 },
                 new User{
-                    Id = 4,
-                    Name = "Binson"
+                    id = 4,
+                    name = "Binson"
                 },
                 new User{
-                    Id = 5,
-                    Name = "Elisa"
+                    id = 5,
+                    name = "Elisa"
                 },
                 new User{
-                    Id = 6,
-                    Name = "Jacky"
+                    id = 6,
+                    name = "Jacky"
                 }
             };
         }
@@ -55,7 +55,7 @@ namespace GraphStudy.Services
         /// <returns></returns>
         public User GetUserById(int id)
         {
-            User selectedUser = users.SingleOrDefault(context => context.Id == id);
+            User selectedUser = users.SingleOrDefault(context => context.id == id);
             if (selectedUser == null)
             {
                 throw new ArgumentException(String.Format("User ID {0} 不存在", id));

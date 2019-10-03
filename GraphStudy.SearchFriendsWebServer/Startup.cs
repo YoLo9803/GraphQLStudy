@@ -21,7 +21,6 @@ namespace GraphStudy.SearchFriendsWebServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<HttpOperation>();
-            services.AddSingleton<HttpOperation>();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
