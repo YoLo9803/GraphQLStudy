@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using Newtonsoft.Json;
 using GraphStudy.Api.GraphQLServer.BusinessModels;
+using GraphStudy.Api.GraphQLServer.Services;
 
 namespace GraphStudy.Api.GraphQLServer.Schema
 {

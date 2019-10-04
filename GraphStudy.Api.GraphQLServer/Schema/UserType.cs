@@ -1,9 +1,10 @@
 ﻿using GraphQL.Types;
-using GraphStudy.Api.GraphQLServer.BusinessModels;
+using GraphStudy.Api.GraphQLServer.Services;
 using System.Collections.Generic;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
+using GraphStudy.Api.GraphQLServer.BusinessModels;
 
 namespace GraphStudy.Api.GraphQLServer.Schema
 {

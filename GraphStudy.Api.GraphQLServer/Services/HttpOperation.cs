@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using System.Net.Http;
 
-namespace GraphStudy.Api.GraphQLServer.Schema
+namespace GraphStudy.Api.GraphQLServer.Services
 {
     public class HttpOperation
     {

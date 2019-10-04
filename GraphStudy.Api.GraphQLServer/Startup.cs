@@ -1,13 +1,12 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using GraphQL;
 using GraphQL.Server;
 using GraphQL.Server.Ui.GraphiQL;
-using GraphStudy.Services;
 using GraphStudy.Api.GraphQLServer.Schema;
+using GraphStudy.Api.GraphQLServer.Services;
 
 namespace GraphStudy.Api.GraphQLServer
 {
